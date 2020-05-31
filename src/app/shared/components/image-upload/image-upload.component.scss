@@ -1,0 +1,25 @@
+$main-color: #333333;
+$secondary-color: #007ad9;
+input {
+  display: none;
+}
+
+.image-upload-container {
+  cursor: pointer;
+}
+
+.upload-btn {
+  background-color: $main-color;
+  border-color: $main-color;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  transition-property: border-color, background-color;
+  transition-duration: 1s;
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $secondary-color !important;
+    background-color: $secondary-color !important;
+  }
+}

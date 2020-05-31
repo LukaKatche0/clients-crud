@@ -1,0 +1,23 @@
+<div class="container">
+    <div>
+        <button pButton type="button" label="Add Client" class="ui-button-raised" (click)="showAddClientModal = true"></button>
+    </div>
+    <div class="filters-wrapper">
+        <app-clients-table-filters></app-clients-table-filters>
+    </div>
+    <div class="clients-table-wrapper">
+        <app-clients-table (deleteClientClicked)="onDeleteClientClicked()"></app-clients-table>
+    </div>
+</div>
+
+<p-dialog [(visible)]="showAddClientModal" styleClass="modal-class" [modal]="true" position="top" [draggable]="false" (onHide)="onAddClientModalHide()">
+    <app-create-or-edit-client (clientAdded)="onClientAdded()" (clientEdited)="onClientEdited()"></app-create-or-edit-client>
+</p-dialog>
+
+<p-dialog header="Delete" [(visible)]="showDeleteClientModal" *ngIf="clientForDelete$ | async as client" styleClass="modal-class" [modal]="true" position="top" [draggable]="false" (onHide)="onDeleteClientModalHide()">
+    <p>Are You Sure You Want To Delete {{client.firstName}} {{client.lastName}}?</p>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="deleteClient(client.id)" label="Yes"></button>
+        <button type="button" pButton icon="pi pi-times" (click)="showDeleteClientModal=false" label="No" class="ui-button-secondary"></button>
+    </p-footer>
+</p-dialog>

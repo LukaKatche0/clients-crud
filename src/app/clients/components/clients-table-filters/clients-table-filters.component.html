@@ -1,0 +1,19 @@
+<div class="p-formgroup-inline filters-row" [formGroup]="searchForm">
+    <div class="p-field">
+        <label for="firstname" class="p-sr-only">Firstname</label>
+        <input id="firstname" type="text" pInputText placeholder="Firstname" formControlName="firstName"> 
+    </div>
+    <div class="p-field">
+        <label for="lastname" class="p-sr-only">Lastname</label>
+        <input id="lastname" type="text" pInputText placeholder="Lastname"  formControlName="lastName"> 
+    </div>
+    <div class="p-field">
+        <label for="personalN" class="p-sr-only">Personal N.</label>
+        <input id="personalN" type="text" pInputText placeholder="Personal N"  formControlName="personalN"> 
+    </div>
+    <div class="p-field">
+        <label for="phoneNumber" class="p-sr-only">Phone Number</label>
+        <input id="phoneNumber" type="text" pInputText placeholder="Phone Number"  formControlName="phoneNumber"> 
+    </div>
+    <button pButton type="button" label="Search" (click)="filterClients()"></button>
+</div>

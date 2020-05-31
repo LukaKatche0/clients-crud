@@ -1,0 +1,24 @@
+<p-table [columns]="cols" [value]="clients$ | async" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+    [autoLayout]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+            <td>
+                <button pButton type="button" label="Edit/Details" class="ui-button-raised" (click)="getClientById(rowData.id)"></button>
+            </td>
+            <td>
+                <button pButton type="button" label="Delete" class="ui-button-raised ui-button-danger" (click)="onDeleteClientClicked(rowData)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

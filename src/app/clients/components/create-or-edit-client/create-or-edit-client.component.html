@@ -1,0 +1,133 @@
+<div class="p-fluid p-formgrid p-grid client-form-flex" [formGroup]="clientForm">
+    <div class="p-field p-col-3">
+        <label for="firstname" class="p-col-12">Firstname*</label>
+        <input id="firstname" type="text" pInputText formControlName="firstName"> 
+        <div *ngIf="clientForm.get('firstName').dirty && clientForm.get('firstName').errors && clientForm.get('firstName').errors.required">
+            <small>{{validationMessages.firstName.required}}</small>
+        </div>    
+        <div *ngIf="clientForm.get('firstName').dirty && clientForm.get('firstName').errors && clientForm.get('firstName').errors.georgianOrLatin">
+            <small>{{validationMessages.firstName.georgianOrLatin}}</small>
+        </div>
+    </div>
+    <div class="p-field p-col-3">
+        <label for="lastname" class="p-col-12">Lastname*</label>
+        <input id="lastname" type="text" pInputText formControlName="lastName"> 
+        <div *ngIf="clientForm.get('lastName').dirty && clientForm.get('lastName').errors && clientForm.get('lastName').errors.required">
+            <small>{{validationMessages.lastName.required}}</small>
+        </div>    
+        <div *ngIf="clientForm.get('lastName').dirty && clientForm.get('lastName').errors && clientForm.get('lastName').errors.georgianOrLatin">
+            <small>{{validationMessages.lastName.georgianOrLatin}}</small>
+        </div>
+    </div>
+    <div class="p-field p-col-3 p-grid">
+        <label for="gender" class="p-col-12">Gender*</label>
+        <div class="p-field p-col-6">
+            <p-radioButton name="gender" [value]="genderEnum.Male" label="Male" formControlName="gender"></p-radioButton>
+        </div>
+        <div class="p-field p-col-6">
+            <p-radioButton name="gender" [value]="genderEnum.Female" label="Female" formControlName="gender"></p-radioButton>
+        </div>
+    </div>
+    <div class="p-field p-col-2">
+        
+    </div>
+    <div class="p-field p-col-3">
+        <label for="personalN" class="p-col-12">Personal N.*</label>
+        <input id="personalN" type="text" pInputText formControlName="personalN"> 
+        <div *ngIf="clientForm.get('personalN').dirty && clientForm.get('personalN').errors && clientForm.get('personalN').errors.required">
+            <small>{{validationMessages.personalN.required}}</small>
+        </div>    
+        <div *ngIf="clientForm.get('personalN').dirty && clientForm.get('personalN').errors && clientForm.get('personalN').errors.personalNumber">
+            <small>{{validationMessages.personalN.personalNumber}}</small>
+        </div>
+    </div>
+    <div class="p-field p-col-3">
+        <label for="phoneNumber" class="p-col-12">Phone Number.*</label>
+        <input id="phoneNumber" type="text" pInputText formControlName="phoneNumber"> 
+        <div *ngIf="clientForm.get('phoneNumber').dirty && clientForm.get('phoneNumber').errors && clientForm.get('phoneNumber').errors.required">
+            <small>{{validationMessages.phoneNumber.required}}</small>
+        </div>    
+        <div *ngIf="clientForm.get('phoneNumber').dirty && clientForm.get('phoneNumber').errors && clientForm.get('phoneNumber').errors.phoneNumber">
+            <small>{{validationMessages.phoneNumber.phoneNumber}}</small>
+        </div>
+    </div>
+    <div class="p-field p-col-6">
+
+    </div>
+    <div class="p-field p-col-3" formGroupName="legalAddress">
+        <div class="p-field">
+            <h4>Legal Address</h4>
+        </div>
+        <div class="p-field">
+            <label for="legalAddressCountry" class="p-col-12">Country*</label>
+            <input id="legalAddressCountry" type="text" pInputText formControlName="country"> 
+        </div>
+        <div class="p-field">
+            <label for="legalAddressCity" class="p-col-12">City.*</label>
+            <input id="legalAddressCity" type="text" pInputText formControlName="city"> 
+        </div>
+        <div class="p-field">
+            <label for="legalAddressAddress" class="p-col-12">Address.*</label>
+            <input id="legalAddressAddress" type="text" pInputText formControlName="address"> 
+        </div>
+    </div>
+    <div class="p-field p-col-3" formGroupName="factualAddress">
+        <div class="p-field">
+            <h4>Factual Address</h4>
+        </div>
+        <div class="p-field">
+            <label for="factualAddressCountry" class="p-col-12">Country*</label>
+            <input id="factualAddressCountry" type="text" pInputText formControlName="country"> 
+        </div>
+        <div class="p-field">
+            <label for="factualAddressCity" class="p-col-12">City.*</label>
+            <input id="factualAddressCity" type="text" pInputText formControlName="city"> 
+        </div>
+        <div class="p-field">
+            <label for="factualAddressAddress" class="p-col-12">Address.*</label>
+            <input id="factualAddressAddress" type="text" pInputText formControlName="address"> 
+        </div>
+    </div>
+    <div class="p-field p-col-6">
+        <h4>Upload Avatar</h4>
+        <app-image-upload (imageUploaded)="onAvatarUploaded($event)"></app-image-upload>
+        <div *ngIf="clientForm.get('avatarUrl').value && clientForm.get('avatarUrl').value.length > 0">
+            <img [@rotatedState]='avatarState' [src]="clientForm.get('avatarUrl').value" class="avatar">
+            <button pButton type="button" class="rotate-avatar-btn" (click)="rotateAvatar()">Rotate Avatar</button>
+        </div>
+    </div>
+    <div class="p-field p-col-12">
+        <h4>Client Accounts</h4>
+        <button pButton type="button" icon="pi pi-plus" label="Add" (click)="addAccount(null)"></button>
+        <div formArrayName="accounts">
+            <div *ngFor="let account of accountsArr.controls; let i = index" [formGroupName]="i" class="p-grid account-row">
+                <div class="p-col-2 p-field">
+                    <label for="accountN" class="p-col-12">Account N*</label>
+                    <p-inputNumber formControlName="accountN" [format]="false"></p-inputNumber>
+                </div>
+                <div class="p-col-2 p-field">
+                    <label for="clientId" class="p-col-12">Client Id*</label>
+                    <p-inputNumber formControlName="clientId" [format]="false"></p-inputNumber>
+                </div>
+                <div class="p-col-2 p-field">
+                    <label for="accountType" class="p-col-12">Account Type*</label>
+                    <p-dropdown [options]="accountTypeOptions" [formControl]="account.controls['accountType']" optionLabel="name"></p-dropdown>
+                </div>
+                <div class="p-col-2 p-field">
+                    <label for="accountType" class="p-col-12">Account Currency*</label>
+                    <p-dropdown [options]="accountCurrencyOptions" formControlName="currency" optionLabel="name"></p-dropdown>
+                </div>
+                <div class="p-col-2 p-field">
+                    <label for="accountType" class="p-col-12">Account Status*</label>
+                    <p-dropdown [options]="accountStatusOptions" formControlName="status" optionLabel="name"></p-dropdown>
+                </div>
+                <div class="p-col-2 p-field">
+                    <button pButton type="button" icon="pi pi-times" label="Remove" class="ui-button-danger" (click)="deleteAccount(i)"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-field p-col-12">
+        <button pButton type="button" [label]="submitBtnText" class="ui-button-raised" (click)="onSubmit()" [disabled]="!clientForm.valid"></button>
+    </div>
+</div>

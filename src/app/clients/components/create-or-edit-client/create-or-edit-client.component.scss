@@ -1,0 +1,32 @@
+.client-form-flex {
+    align-items: flex-start;
+}
+
+.p-field.p-grid > label {
+    margin-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin-top: 5%;
+}
+
+.account-row {
+    margin-top: 2%;
+    align-items: flex-end;
+}
+
+.rotate-avatar-btn {
+    margin-top: 2%;
+    height: 40px;
+    padding: 10px;
+}
+
+small {
+    color: red;
+}
