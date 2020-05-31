@@ -18,7 +18,7 @@ export class ClientsService {
     return this.api.get<Client[]>(`clients/${id}`);
   }
 
-  addClient(client: Client): Observable<any> {
+  addClient(client: Client): Observable<Client> {
     return this.api.post('clients', client);
   }
 

@@ -96,8 +96,8 @@ export class ClientsState {
     return this.clientsService
       .addClient(action.payload)
       .pipe(
-        mergeMap(() =>
-          ctx.dispatch(new ClientActions.AddClientSuccess(action.payload))
+        mergeMap((client: Client) =>
+          ctx.dispatch(new ClientActions.AddClientSuccess(client))
         )
       );
   }
