@@ -1,13 +1,14 @@
 import { IClientAddress } from 'src/app/shared/models/address.interface';
 import { Account } from '../account/account.model';
+import { GenderEnum } from '../enums/gender.enum';
 
 export interface IClient {
-    id: string;
+    id: any;
     accounts: Account[];
     clientId: number;
     firstName: string;
     lastName: string;
-    gender: string;
+    gender: GenderEnum;
     personalN: string;
     phoneNumber: string;
     legalAddress: IClientAddress;

@@ -19,7 +19,7 @@ export class ClientsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = [
-      { field: 'clientId', header: 'Client Id'},
+      { field: 'id', header: 'Client Id'},
       { field: 'firstName', header: 'First Name' },
       { field: 'lastName', header: 'Last Name' },
       { field: 'personalN', header: 'Personal N.' },

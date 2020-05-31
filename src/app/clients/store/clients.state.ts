@@ -122,8 +122,8 @@ export class ClientsState {
     return this.clientsService
       .editClient(action.id, action.payload)
       .pipe(
-        mergeMap(() =>
-          ctx.dispatch(new ClientActions.EditClientSuccess(action.payload))
+        mergeMap((client) =>
+          ctx.dispatch(new ClientActions.EditClientSuccess(client))
         )
       );
   }
@@ -136,7 +136,7 @@ export class ClientsState {
     ctx.setState(
       patch({
         clients: updateItem(
-          (item) => item.clientId === action.payload.clientId,
+          (item) => item.id === action.payload.id,
           action.payload
         ),
       })

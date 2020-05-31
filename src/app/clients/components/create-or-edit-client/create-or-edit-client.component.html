@@ -1,4 +1,4 @@
-<div class="p-fluid p-formgrid p-grid client-form-flex" [formGroup]="clientForm">
+<div class="p-fluid p-formgrid p-grid client-form-flex" [formGroup]="clientForm" *ngIf="clientForm">
     <div class="p-field p-col-3">
         <label for="firstname" class="p-col-12">Firstname*</label>
         <input id="firstname" type="text" pInputText formControlName="firstName"> 
@@ -115,11 +115,11 @@
                 </div>
                 <div class="p-col-2 p-field">
                     <label for="accountType" class="p-col-12">Account Currency*</label>
-                    <p-dropdown [options]="accountCurrencyOptions" formControlName="currency" optionLabel="name"></p-dropdown>
+                    <p-dropdown [options]="accountCurrencyOptions" [formControl]="account.controls['currency']" optionLabel="name"></p-dropdown>
                 </div>
                 <div class="p-col-2 p-field">
                     <label for="accountType" class="p-col-12">Account Status*</label>
-                    <p-dropdown [options]="accountStatusOptions" formControlName="status" optionLabel="name"></p-dropdown>
+                    <p-dropdown [options]="accountStatusOptions" [formControl]="account.controls['status']" optionLabel="name"></p-dropdown>
                 </div>
                 <div class="p-col-2 p-field">
                     <button pButton type="button" icon="pi pi-times" label="Remove" class="ui-button-danger" (click)="deleteAccount(i)"></button>

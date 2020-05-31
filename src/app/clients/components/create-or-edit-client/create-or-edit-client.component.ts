@@ -101,9 +101,11 @@ export class CreateOrEditClientComponent implements OnInit {
         this.submitBtnText = 'Edit Client';
         this.initializeForm();
         UtilService.setFormByModel(client, this.clientForm);
-        client.accounts.forEach(account => {
-          this.addAccount(account);
-        })
+        if (client.accounts) {
+          client.accounts.forEach(account => {
+            this.addAccount(account);
+          })
+        }
       } else {
         this.clientForEditId = null;
         this.submitBtnText = 'Add Client';

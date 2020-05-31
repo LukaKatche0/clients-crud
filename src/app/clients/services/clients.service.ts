@@ -22,7 +22,7 @@ export class ClientsService {
     return this.api.post('clients', client);
   }
 
-  editClient(id: string, client: Client): Observable<any> {
+  editClient(id: string, client: Client): Observable<Client> {
     return this.api.put(`clients/${id}`, client);
   }
 
