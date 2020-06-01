@@ -1,6 +1,9 @@
-<p-table [columns]="cols" [value]="clients$ | async" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+<p-table [columns]="cols" [value]="clients$ | async" [paginator]="true" [rows]="rows" [showCurrentPageReport]="true"
     [autoLayout]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [(first)]="first"
+    (onPage)="onPage($event)"
+    >
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">

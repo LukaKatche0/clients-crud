@@ -14,7 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
 import { FakeAuthGuard } from './shared/guards/fake-auth.guard';
 import { HttpErrorInterceptor } from './shared/interceptors/http-error.interceptor';
-
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,9 @@ import { HttpErrorInterceptor } from './shared/interceptors/http-error.intercept
     NgxsModule.forRoot([], {
       developmentMode: !environment.production
     }),
+    NgxsStoragePluginModule.forRoot({
+      key: 'table'
+    }), 
     SharedModule,
     NgxsReduxDevtoolsPluginModule.forRoot({
       disabled: environment.production
